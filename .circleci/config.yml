@@ -14,8 +14,8 @@ jobs:
           command: |
             docker build . --iidfile imageid
             IMAGE_ID=$(cat imageid)
-            docker tag $IMAGE_ID shunichitakagi/build-tools:0.0.1-build${CIRCLE_BUILD_NUM}
-            docker tag $IMAGE_ID shunichitakagi/build-tools:latest
+            docker tag $IMAGE_ID vern1erca1per/circleci-build-docker:0.0.1-build${CIRCLE_BUILD_NUM}
+            docker tag $IMAGE_ID vern1erca1per/circleci-build-docker:latest
 
       - run:
           name: Login to Docker Hub
@@ -25,5 +25,13 @@ jobs:
       - run:
           name: Push docker image with to Docker Hub
           command: |
-            docker push shunichitakagi/build-tools:0.0.1-build${CIRCLE_BUILD_NUM}
-            docker push shunichitakagi/build-tools:latest
+            docker push vern1erca1per/circleci-build-docker:0.0.1-build${CIRCLE_BUILD_NUM}
+            docker push vern1erca1per/circleci-build-docker:latest
+
+workflows:
+  version: 2.1
+  build:
+    jobs:
+      - build:
+          context: docker
+
