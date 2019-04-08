@@ -26,8 +26,9 @@ RUN apk add -U openssl curl tar gzip bash ca-certificates && \
 RUN curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/darwin/amd64/aws-iam-authenticator && \
     chmod +x ./aws-iam-authenticator && \
     mkdir $HOME/bin && cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticator && \
-    export PATH=$HOME/bin:$PATH && \
     echo 'export PATH=$HOME/bin:$PATH' >> ~/.bash_profile
+
+ENV PATH $HOME/bin:$PATH
 
 RUN curl -L -o /usr/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
     chmod +x /usr/bin/kubectl && \
