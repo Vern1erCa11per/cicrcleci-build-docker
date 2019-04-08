@@ -3,9 +3,7 @@ LABEL maintainer="vern1erca1per <26157023+Vern1erCa11per@users.noreply.github.co
 
 ## Setup environments
 ENV GOPATH  /root/go
-ENV PATH    $PATH:$GOPATH/bin
-
-ENV PATH    $PATH:$HOME/bin
+ENV PATH    $PATH:$GOPATH/bin:/root/bin
 
 ## Install by apk
 RUN apk add --no-cache bash curl git openssh docker go python musl-dev
@@ -27,8 +25,8 @@ RUN apk add -U openssl curl tar gzip bash ca-certificates && \
 
 RUN curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/darwin/amd64/aws-iam-authenticator && \
     chmod +x ./aws-iam-authenticator && \
-    mkdir $HOME/bin && cp aws-iam-authenticator $HOME/bin/ && \
-    echo 'export PATH=$HOME/bin:$PATH' >> ~/.bash_profile
+    mkdir ~/bin && cp aws-iam-authenticator ~/bin/ && \
+    echo 'export PATH=/root/bin:$PATH' >> ~/.bash_profile
 
 RUN curl -L -o /usr/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
     chmod +x /usr/bin/kubectl && \
