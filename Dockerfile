@@ -23,7 +23,7 @@ RUN apk add -U openssl curl tar gzip bash ca-certificates && \
   apk add glibc-2.29-r0.apk && \
   rm glibc-2.29-r0.apk
 
-RUN curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/darwin/amd64/aws-iam-authenticator && \
+RUN curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/linux/amd64/aws-iam-authenticator && \
     chmod +x ./aws-iam-authenticator && \
     mkdir ~/bin && cp aws-iam-authenticator ~/bin/ && \
     echo 'export PATH=/root/bin:$PATH' >> ~/.bash_profile
