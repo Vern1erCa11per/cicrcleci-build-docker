@@ -32,3 +32,9 @@ RUN curl -L -o /usr/bin/kubectl https://storage.googleapis.com/kubernetes-releas
     chmod +x /usr/bin/kubectl && \
     kubectl version --client
 
+RUN curl -o helm.tar.gz https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-amd64.tar.gz && \
+    tar -zxvf helm.tar.gz && \
+    cp linux-amd64/helm /usr/local/bin/helm && \
+    echo 'export PATH=/usr/local/bin/:$PATH' >> ~/.bash_profile
+
+
